@@ -18,7 +18,8 @@
 
       </div>
       <Login ref="login"/>
-      <button @click="toggleCart" class="user-button">CART</button>
+      <button v-if="this.$store.state.loginState.loggedIn"
+      @click="toggleCart" class="user-button">CART</button>
       <div id="outside-cart" v-if="!hideCart" @click="hideCart = true">
       </div>
       <Cart :class="{hidden : hideCart}" v-on:hidecart="hideCart = true"/>
@@ -31,10 +32,11 @@
 
     <div id="links">
       <div class="center">
-      <router-link :to="{ name: 'Shop' }">SPICES</router-link>
-      <router-link :to="{ name: 'Shop', params: { itags: ['herb'] }}">HERBS</router-link>
-      <router-link :to="{ name: 'Shop', params: { itags: ['salty'] }}">SALTS</router-link>
-      <router-link :to="{ name: 'Shop', params: { isale: true }}">SALE</router-link>
+        <router-link :to="{ name: 'Shop' }">SHOP</router-link>
+        <router-link :to="{ name: 'Shop', params: { itags: ['spice']} }">SPICES</router-link>
+        <router-link :to="{ name: 'Shop', params: { itags: ['herb'] }}">HERBS</router-link>
+        <router-link :to="{ name: 'Shop', params: { itags: ['blend'] }}">BLENDS</router-link>
+        <router-link :to="{ name: 'Shop', params: { isale: true }}">SALE</router-link>
       </div>
     </div>
   </div>
