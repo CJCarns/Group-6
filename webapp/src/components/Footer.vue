@@ -24,6 +24,7 @@ export default {
   background-color: rgba(66, 34, 16, 0.8);
   border-top: solid 1px #7aa256;
   color: #cc783c;
+  height: 60px;
 }
 
 #foot a {
