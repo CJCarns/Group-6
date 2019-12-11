@@ -163,8 +163,9 @@ export const actions = {
     t.tags = payload.tags;
     return axios.put(`/api/item/${payload.id}`, payload).then((response) => {
       return axios.post('/api/item_tag_1', t).then((response) => {
-        payload.tags = t;
-        commit("updateSpice", payload);
+        return axios.get("/api/item", payload).then((response) => {
+          commit("storeItems", response.data);
+        })
       })
     })
   },

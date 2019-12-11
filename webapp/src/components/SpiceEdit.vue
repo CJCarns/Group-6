@@ -22,7 +22,7 @@
             <p>Tags</p>
             <div class="tag" v-for="tag in allTags">
                 <input type="checkbox" :value="tag.id" v-model="updatedInfo.tags"/>
-                <label> {{tag.title}}</label>
+                <label style="background-color:#8d9b77; color:white; margin-left:3px"> {{tag.title}}</label>
             </div>
           <button @click="updateSpice" >SAVE</button>
           </div>
