@@ -134,12 +134,12 @@ createConnection().then(() => {
   }
 
   var a = new Announcement(); 
-  a.img_link = "/Shop/salt";
-  a.link_to = "https://i.imgur.com/sZ92nzl.png";
+  a.link_to = "/Shop/salt";
+  a.img_link= "https://i.imgur.com/sZ92nzl.png";
   getManager().save(a);
   a = new Announcement(); 
-  a.img_link = "/Shop/paprika";
-  a.link_to = "https://i.imgur.com/m4eMfBc.png";
+  a.link_to = "/Shop/paprika";
+  a.img_link = "https://i.imgur.com/m4eMfBc.png";
   getManager().save(a);
 
   // generate staff alerts
