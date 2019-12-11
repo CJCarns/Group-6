@@ -3,8 +3,8 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/myaccount">My Account</router-link> |
-      <router-link to="/">Tracking</router-link> |
-      (805)-321-2831
+      Contact Us:
+      (805)-321-2831 - 685 Higuera St, San Luis Obispo, CA 93401
     </div>
 </template>
 
