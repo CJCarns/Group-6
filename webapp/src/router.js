@@ -40,10 +40,11 @@ export default new Router({
       component: Staff
     },
     {
-      path: "/Shop/:item?",
+      path: "/Shop",
       name: "Shop",
       component: Shop,
-      props: true
+      props: true,
+      ref: "shopview"
     },
     {
       path: "/complete",

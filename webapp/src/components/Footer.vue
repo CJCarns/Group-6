@@ -1,10 +1,10 @@
 <template>
     <div id="foot">
       <router-link to="/">Home</router-link> |
-      <!-- <router-link to="/about">About</router-link> | -->
-      <router-link to="/myaccount">My Account</router-link>
-      <!-- <router-link to="/">Tracking</router-link> | -->
-      <!-- <router-link to="/">Contact us</router-link> -->
+      <router-link to="/about">About</router-link> |
+      <router-link to="/myaccount">My Account</router-link> |
+      <router-link to="/">Tracking</router-link> |
+      (805)-321-2831
     </div>
 </template>
 
@@ -24,6 +24,7 @@ export default {
   background-color: rgba(66, 34, 16, 0.8);
   border-top: solid 1px #7aa256;
   color: #cc783c;
+  height: 60px;
 }
 
 #foot a {

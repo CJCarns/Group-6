@@ -2,12 +2,13 @@
   <div style="margin: 0px; padding: 0px; display:inline-block;">
     <div class="spice-tile" v-if="spice.stock > 0" v-on:click="toggleDetails">
       <img :src='spice.image'>
-      <h4>{{spice.title.charAt(0).toUpperCase() + spice.title.slice(1).toLowerCase()}}</h4>
+      <h4 style="margin-bottom: 5px;">{{spice.title.charAt(0).toUpperCase() + spice.title.slice(1).toLowerCase()}}
+        <span v-if="spice.sale > 0" style="color: red;"> - {{spice.sale}}% off!</span>
+      </h4>
 
-      <div v-if="spice.sale > 0" style="color:red; text-align: center;">
+      <div v-if="spice.sale > 0" style="color: black; text-align: center;">
         <p style="text-decoration: line-through;">${{getPrice().toFixed(2)}}</p>
-        <p style="color:black"> {{" → $" + getSalePrice().toFixed(2)}}</p>
-        <p style="display: block;">{{spice.sale}}% off!</p>
+        <p style="color:red"> {{" → $" + getSalePrice().toFixed(2)}}</p>
       </div>
       <div v-else style="text-align: center">
         <p style="color:black">{{"$" + getPrice().toFixed(2)}}</p>

@@ -63,6 +63,12 @@ export const mutations = {
   },
   storeStaff(state, staff) {
     state.staff = staff;
+  },
+  assignShopTag(state, tag) {
+    state.shopTag = tag;
+  },
+  setShopSale(state, bool) {
+    state.shopSale = bool;
   }
 };
 
@@ -210,6 +216,12 @@ export const actions = {
     return axios.get(`/api/order_all`).then(response => {
       commit("storeAllOrders", response.data);
     })
+  },
+  assignShopTag: function({commit}, tag) {
+    commit("assignShopTag", tag);
+  },
+  setShopSale: function({commit}, bool) {
+    commit("setShopSale", bool);
   }
 };
 
@@ -222,6 +234,8 @@ export default new Vuex.Store({
     spices: [],
     orders: [],
     tags: [],
+    shopTag: null,
+    shopSale: false,
     cart: [],
     banners: [],
     staff: []

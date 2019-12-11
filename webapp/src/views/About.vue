@@ -1,13 +1,13 @@
 <template>
   <div class="about">
-    <h1>About Spice Cabinet</h1>
+    <h2>We are a spice store serving the Central Coast based in San Luis Obispo.</h2>
   </div>
 </template>
 
 <style scoped>
-h1{
+h2{
   text-align: center;
   color: #da782f;
-  font-size: 62pt;
+  font-size: 48pt;
 }
 </style>
