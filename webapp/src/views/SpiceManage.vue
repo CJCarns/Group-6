@@ -26,10 +26,10 @@
       <input type="text" placeholder="New Tag" v-model="newTag"/>
       <button @click="addTag">Add Tag</button>
       <p>Tags</p>
-      <div class="tag" v-for="tag in allTags">
+      <div class="tag" v-for="tag in allTags" style="background-color:#8d9b77; color:white; margin-left:5px;">
         <!-- <input type="checkbox" :value="tag.id" v-model="tags"/> -->
         <button class="delButton" @click="deleteTag(tag)">X</button>
-        <label> {{tag.title}}</label>
+        <label style="background-color:#8d9b77; color:white; margin-left:2px"> {{tag.title}}</label>
       </div>
     </div>
     <b-field style="width: 50%; margin: auto;">
@@ -69,7 +69,10 @@ export default {
       }
     },
     deleteTag(tag){
-      this.spicesLoading = true
+      if (!confirm("Are you sure you want to delete " + tag.title + "? This action cannot be undone!")){
+        return;
+      }
+      this.spicesLoading = true;
       this.$store.dispatch("deleteTag", tag).then(() => {
         this.$store.dispatch("getTags", "").then(() => {
           this.spicesLoading = false;
@@ -134,9 +137,11 @@ input {
 }
 
 .delButton{
-  background-color: #ff6666;
+  background-color: white;
+  color: red;
   font-size: 10px;
-  padding: 3px;
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
 
 button {
