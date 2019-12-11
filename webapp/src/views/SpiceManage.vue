@@ -22,15 +22,15 @@
     </div>
     <button @click="hideTags = !hideTags">MANAGE TAGS</button>
     <div id="tag-form" :class="{hide : hideTags}">
-      <p>New Tag</p>
-      <input type="text" placeholder="New Tag" v-model="newTag"/>
-      <button @click="addTag">Add Tag</button>
       <p>Tags</p>
       <div class="tag" v-for="tag in allTags">
         <!-- <input type="checkbox" :value="tag.id" v-model="tags"/> -->
+        <label>  {{tag.title}}</label>
         <button class="delButton" @click="deleteTag(tag)">X</button>
-        <label> {{tag.title}}</label>
       </div>
+      <p style="text-align: center;">New Tag</p>
+      <input type="text" placeholder="New Tag" v-model="newTag" style="width: 50%; margin: auto;"/>
+      <button @click="addTag">Add Tag</button>
     </div>
     <b-field style="width: 50%; margin: auto;">
       <b-input v-model="search" placeholder="SEARCH"/>
@@ -136,7 +136,17 @@ input {
 .delButton{
   background-color: #ff6666;
   font-size: 10px;
-  padding: 3px;
+  padding: 1px 4px 1px 4px;
+  margin-left: 3px;
+  color: black;
+}
+
+.tag {
+  
+  border-radius: 10px;
+  background-color: #7aa256;
+  color: black;
+  margin: 3px;
 }
 
 button {

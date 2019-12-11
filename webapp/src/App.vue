@@ -2,7 +2,7 @@
   <div id="app">
       <!-- {{this.$store.dispatch("checkLogin")}} -->
       <Header/>
-      <router-view id="router-view"/>
+      <router-view id="router-view" ref="rview"/>
       <br>
       <br>
       <br>
