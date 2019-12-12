@@ -13,8 +13,8 @@
       <input type="text" placeholder="Name" v-model="newSpice.title"/>
       <input type="text" placeholder="Image URL" v-model="newSpice.image"/>
       <textarea placeholder="Description" v-model="newSpice.description"/>
-      <input type="text" placeholder="Unit Price" v-model="newSpice.unit_price"/>
-      <input type="text" placeholder="Sale Amount" v-model="newSpice.sale"/>
+      <input type="text" placeholder="Unit Price (cents/gram)" v-model="newSpice.unit_price"/>
+      <input type="text" placeholder="Sale Amount (0-100)" v-model="newSpice.sale"/>
       <input type="text" placeholder="Stock Amount" v-model="newSpice.stock"/>
       <p style="color: red" v-if="this.showReqFields">You must enter a Name, Unit Price, and Image.</p>
       <button @click="addSpice">ADD</button>
@@ -145,7 +145,7 @@ input {
 }
 
 .tag {
-  
+
   border-radius: 10px;
   background-color: #7aa256;
   color: black;

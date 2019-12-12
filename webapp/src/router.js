@@ -40,7 +40,7 @@ export default new Router({
       component: Staff
     },
     {
-      path: "/Shop",
+      path: "/Shop/:item?",
       name: "Shop",
       component: Shop,
       props: true,
