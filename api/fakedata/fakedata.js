@@ -59,7 +59,7 @@ createConnection().then(() => {
   var i = 0;
   var alpha = genCharArray('a', 'z');
   // generate items
-  var spices = ["spicy", "salty", "peppery", "red", "umami", "sweet", "brown", "italian", "fresh", "coarse"]
+  var spices = ["spicy", "salty", "peppery", "red", "umami", "sweet", "brown", "italian", "fresh", "coarse", "spice", "herb", "blend"]
   var saved_tags = [];
   var spice_names = ["salt", "paprika", "tumeric", "pink salt", "oregano", "bay leaves", "ginger", "coriander", "star anise", "pepper"];
   var spice_pics = [
@@ -74,7 +74,7 @@ createConnection().then(() => {
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.healthbenefitstimes.com%2F9%2Fgallery%2Fstar-anise%2FStar-Anise-Rusot%25C3%25A4htianis.jpg&f=1&nofb=1",
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.organicfacts.net%2Fwp-content%2Fuploads%2F2013%2F06%2FBlackpepper.jpg&f=1&nofb=1"
   ];
-  for(i = 0; i < 10; i++) {
+  for(i = 0; i < spices.length; i++) {
     let tag = new Tag();
     tag.title = spices[i];
     const entityManager = getManager();
