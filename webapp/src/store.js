@@ -215,6 +215,12 @@ export const actions = {
   getAllOrders: function({commit}) {
     return axios.get(`/api/order_all`).then(response => {
       commit("storeAllOrders", response.data);
+      return response.data;
+    })
+  },
+  getUser: function({commit}, id){
+    return axios.get(`/api/login/${id}`).then((response) => {
+      return response.data;
     })
   },
   assignShopTag: function({commit}, tag) {

@@ -18,7 +18,7 @@
 <script>
 import Order from "@/components/Order.vue"
 export default {
-  name: "custaccount",
+  name: "PastOrders",
   components: {
     Order
   },
@@ -29,9 +29,12 @@ export default {
   },
   created() {
     this.ordersLoading = true;
+    // this.$store.dispatch()
     this.$store.dispatch("getAllOrders").then((response) => {
+      // console.log(response);
       this.ordersLoading = false;
-    })
+      this.$forceUpdate();
+    });
   },
   data() {
     return {

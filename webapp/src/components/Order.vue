@@ -41,7 +41,7 @@ export default {
       hideDetails: true,
       trackNum: "",
       warnUser: false,
-      //staffObj: {},
+      staffObj: {},
       changingOrder: false
     };
   },
@@ -74,11 +74,6 @@ export default {
       return (this.$store.state.loginState.user.permission <= 2 &&
       this.order.staff_id == this.$store.state.loginState.user.id &&
       this.order.order_status == 1)
-    },
-    staffObj() {
-      return this.$store.state.staff.find(user => {
-          return (user.id == this.order.staff_id)
-        });
     }
   },
   methods: {
@@ -122,6 +117,9 @@ export default {
     }
   },
   created(){
+    this.$store.dispatch("getUser", this.order.staff_id).then((response) => {
+      this.staffObj = response;
+    })
   }
 };
 </script>

@@ -62,5 +62,19 @@ export default (passport) => {
       res.sendStatus(401);
     }
   });
+
+  router.get('/login/:id', (req, res) => {
+    if (req.user.permission < 3){
+      getRepository(User).findOneOrFail(
+        { where: { id: req.params.id } },
+      ).then((foundUser) => {
+        res.send({email: foundUser.email, firstname: foundUser.firstname, lastname: foundUser.lastname});
+      }, () => {
+        res.sendStatus(404);
+      });
+    } else{
+      res.sendStatus(401);
+    }
+  });
   return router;
 };
