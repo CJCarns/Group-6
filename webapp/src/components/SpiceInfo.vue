@@ -1,12 +1,12 @@
 <template>
-    <div class="spice-info">
-        <div class="desc">
-            <img :src='spice.image' />
-            <h4>{{spice.title}}</h4>
-            <p style="margin-bottom: 5px;">
-                {{spice.description}}
-            </p>
-            <p class="tag" v-for="tag in spice.tags">{{tag.title}}</p>
+  <div class="spice-info">
+    <div class="desc">
+      <img :src='spice.image' />
+      <h4>{{spice.title}}</h4>
+      <p style="margin-bottom: 5px;">
+        {{spice.description}}
+      </p>
+      <p class="tag" v-for="tag in spice.tags">{{tag.title}}</p>
     </div>
     <div class="purchase">
       <form>

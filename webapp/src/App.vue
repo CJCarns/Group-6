@@ -12,7 +12,7 @@
       <!-- <div style="height: 100px;">
       </div> -->
       <Footer/>
-      <!-- <div class="back-img"></div> -->
+      <div class="back-img"></div>
   </div>
 </template>
 
