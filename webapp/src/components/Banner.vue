@@ -1,6 +1,6 @@
 <template>
   <div id="banner">
-    <router-link :to="link_to" style="margin: 0">
+    <router-link :to="link_to">
       <img :src="img_link"/>
     </router-link>
     <div v-if="this.$store.state.loginState.loggedIn && this.$store.state.loginState.user.permission < 2" to="/dashboard" style="position: absolute; top:1%; right:1%; z-index:1">
@@ -50,7 +50,7 @@ div {
 #banner{
   display: inline-block;
   float: left;
-  margin: 3px;
+  margin: auto;
   position: relative;
 }
 

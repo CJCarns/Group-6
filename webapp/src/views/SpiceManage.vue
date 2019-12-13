@@ -10,12 +10,18 @@
     <div id="spice-form" :class="{hide : hideFields}">
       <img :src="newSpice.image"/>
       <h4>New Spice</h4>
+      <p>Name</p>
       <input type="text" placeholder="Name" v-model="newSpice.title"/>
+      <p>Image URL</p>
       <input type="text" placeholder="Image URL" v-model="newSpice.image"/>
+      <p>Description</p>
       <textarea placeholder="Description" v-model="newSpice.description"/>
-      <input type="text" placeholder="Unit Price (cents/gram)" v-model="newSpice.unit_price"/>
-      <input type="text" placeholder="Sale Amount (0-100)" v-model="newSpice.sale"/>
-      <input type="text" placeholder="Stock Amount" v-model="newSpice.stock"/>
+      <p>Unit Price (cents/gram)</p>
+      <input type="number" placeholder="Unit Price (cents/gram)" v-model="newSpice.unit_price"/>
+      <p>Sale Amount (0-100%)</p>
+      <input type="number" placeholder="Sale Amount (0-100)" v-model="newSpice.sale"/>
+      <p>Stock Amount (grams)</p>
+      <input type="number" placeholder="Stock Amount" v-model="newSpice.stock"/>
       <p style="color: red" v-if="this.showReqFields">You must enter a Name, Unit Price, and Image.</p>
       <button @click="addSpice">ADD</button>
       <button @click="clearInput">CANCEL</button>
@@ -114,10 +120,10 @@ export default {
       newSpice:  {
         title: "",
         unit_price: "",
-        stock: "",
+        stock: 0,
         description: "",
         image: "",
-        sale: "",
+        sale: 0
       },
       spicesLoading: false,
       search: "",
