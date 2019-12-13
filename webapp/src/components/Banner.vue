@@ -50,7 +50,7 @@ div {
 #banner{
   display: inline-block;
   float: left;
-  margin: auto;
+  margin: 7px;
   position: relative;
 }
 
