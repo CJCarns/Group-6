@@ -11,3 +11,5 @@
    it may cause some of the tests to fail
 8. Owner login information is email:`Owner` password:`Owner` (ideally we set this
    up with whatever login you desire)
+9. Item tags are randomized to start with. The three major category tags are
+   spice, herb, and blend.
