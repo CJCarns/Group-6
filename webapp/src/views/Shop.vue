@@ -156,7 +156,8 @@
   width: 200px;
   height: 100vh;
   overflow-y: scroll;
-  padding-top: 60px;
+  margin-top: 60px;
+  /* padding-top: 60px; */
   padding-left: 15px;
   padding-right: 15px;
   /* padding: 60px 15px 60px 15px; */
