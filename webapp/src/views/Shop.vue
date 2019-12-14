@@ -1,5 +1,5 @@
 <template>
-  <div ref="shopview">
+  <div ref="shopview" style="background-color: #fbf3e4;">
     <div class="filter">
       <h2>FILTERS</h2>
       <b-field label="Search">
@@ -156,7 +156,11 @@
   width: 200px;
   height: 100vh;
   overflow-y: scroll;
-  padding: 60px 15px 60px 15px;
+  margin-top: 60px;
+  /* padding-top: 60px; */
+  padding-left: 15px;
+  padding-right: 15px;
+  /* padding: 60px 15px 60px 15px; */
   border-right: solid 1px black;
   float: left;
   position: fixed;
@@ -165,8 +169,18 @@
   background-color: #fbf3e4;
 }
 
+.filter:after{
+  content: "";
+  display: block;
+  height: 80px;
+  width: 100%;
+}
+
 .content {
   padding-left: 210px;
+  min-height: 100vh;
+  height: auto;
+  /* overflow-y: scroll; */
 }
 
 .tag {

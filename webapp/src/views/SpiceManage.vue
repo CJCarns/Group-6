@@ -10,12 +10,18 @@
     <div id="spice-form" :class="{hide : hideFields}">
       <img :src="newSpice.image"/>
       <h4>New Spice</h4>
+      <p>Name</p>
       <input type="text" placeholder="Name" v-model="newSpice.title"/>
+      <p>Image URL</p>
       <input type="text" placeholder="Image URL" v-model="newSpice.image"/>
+      <p>Description</p>
       <textarea placeholder="Description" v-model="newSpice.description"/>
-      <input type="text" placeholder="Unit Price" v-model="newSpice.unit_price"/>
-      <input type="text" placeholder="Sale Amount" v-model="newSpice.sale"/>
-      <input type="text" placeholder="Stock Amount" v-model="newSpice.stock"/>
+      <p>Unit Price (cents/gram)</p>
+      <input type="number" placeholder="Unit Price (cents/gram)" v-model="newSpice.unit_price"/>
+      <p>Sale Amount (0-100%)</p>
+      <input type="number" placeholder="Sale Amount (0-100)" v-model="newSpice.sale"/>
+      <p>Stock Amount (grams)</p>
+      <input type="number" placeholder="Stock Amount" v-model="newSpice.stock"/>
       <p style="color: red" v-if="this.showReqFields">You must enter a Name, Unit Price, and Image.</p>
       <button @click="addSpice">ADD</button>
       <button @click="clearInput">CANCEL</button>
@@ -23,10 +29,10 @@
     <button @click="hideTags = !hideTags">MANAGE TAGS</button>
     <div id="tag-form" :class="{hide : hideTags}">
       <p>Tags</p>
-      <div class="tag" v-for="tag in allTags">
+      <div class="tag" v-for="tag in allTags" style="background-color:#8d9b77; color:white; margin-left:5px;">
         <!-- <input type="checkbox" :value="tag.id" v-model="tags"/> -->
-        <label>  {{tag.title}}</label>
         <button class="delButton" @click="deleteTag(tag)">X</button>
+        <label style="background-color:#8d9b77; color:white; margin-left:2px"> {{tag.title}}</label>
       </div>
       <p style="text-align: center;">New Tag</p>
       <input type="text" placeholder="New Tag" v-model="newTag" style="width: 50%; margin: auto;"/>
@@ -69,7 +75,10 @@ export default {
       }
     },
     deleteTag(tag){
-      this.spicesLoading = true
+      if (!confirm("Are you sure you want to delete " + tag.title + "? This action cannot be undone!")){
+        return;
+      }
+      this.spicesLoading = true;
       this.$store.dispatch("deleteTag", tag).then(() => {
         this.$store.dispatch("getTags", "").then(() => {
           this.spicesLoading = false;
@@ -111,10 +120,10 @@ export default {
       newSpice:  {
         title: "",
         unit_price: "",
-        stock: "",
+        stock: 0,
         description: "",
         image: "",
-        sale: "",
+        sale: 0
       },
       spicesLoading: false,
       search: "",
@@ -134,15 +143,15 @@ input {
 }
 
 .delButton{
-  background-color: #ff6666;
+  background-color: white;
+  color: red;
   font-size: 10px;
-  padding: 1px 4px 1px 4px;
-  margin-left: 3px;
-  color: black;
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
 
 .tag {
-  
+
   border-radius: 10px;
   background-color: #7aa256;
   color: black;

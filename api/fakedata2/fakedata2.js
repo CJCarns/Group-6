@@ -23,16 +23,16 @@ createConnection().then(() => {
   var temp_set = new Set()
   // assign tags to items
   for(i = 0; i < 10; i++) {
-    //  query for a list of tag entities 
-    var tags_list = [randInt(1, 10), randInt(1, 10)]
+    //  query for a list of tag entities
+    var tags_list = [randInt(1, 13), randInt(1, 13)]
     while(tags_list[0] == tags_list[1]) {
-      var tags_list = [randInt(1, 10), randInt(1, 10)]
+      var tags_list = [randInt(1, 13), randInt(1, 13)]
     }
-    let tag_entities = tags_list.map((tagID) => { 
+    let tag_entities = tags_list.map((tagID) => {
       return getRepository(Tag).findOneOrFail(tagID).then((tag) => {
         return tag
       }, () => {
-        console.log("--------tag not found------")  
+        console.log("--------tag not found------")
       })
     });
 
@@ -46,13 +46,12 @@ createConnection().then(() => {
             getManager().save(item).then((savedItem) => {
               console.log("-----------tag[s] successfully saved----------")
             }, () => {
-              console.log("--------tag not found------")  
+              console.log("--------tag not found------")
             })
           }, () =>
           {
-            console.log("--------tag not found------")  
+            console.log("--------tag not found------")
           })
       })
   }
 })
-

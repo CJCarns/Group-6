@@ -2,8 +2,11 @@
   <div class="CustomerAccount" v-if="this.$store.dispatch('authorized', 2)">
     <b-loading :is-full-page="false" :active.sync="ordersLoading" style="z-index: 1;" />
     <h1><b>Past Orders</b></h1>
+    <b-field style="width: 50%; margin: auto;">
+      <b-input v-model="search" placeholder="Search Order ID"/>
+    </b-field>
     <br />
-    <Order v-if="order.order_status < 1" v-for="order in orders" :key="order.id" :id="order.id"/>
+    <Order v-if="order.order_status < 1 && (search == '' || order.id == search)" v-for="order in orders" :key="order.id" :id="order.id"/>
     <router-link to="/dashboard">
       <div class="manageLink">
         Back
@@ -15,7 +18,7 @@
 <script>
 import Order from "@/components/Order.vue"
 export default {
-  name: "custaccount",
+  name: "PastOrders",
   components: {
     Order
   },
@@ -26,13 +29,17 @@ export default {
   },
   created() {
     this.ordersLoading = true;
+    // this.$store.dispatch()
     this.$store.dispatch("getAllOrders").then((response) => {
+      // console.log(response);
       this.ordersLoading = false;
-    })
+      this.$forceUpdate();
+    });
   },
   data() {
     return {
-      ordersLoading: false
+      ordersLoading: false,
+      search: ""
     }
   }
 };

@@ -1,16 +1,12 @@
 <template>
-  <div>
-    <div v-if="this.$store.state.loginState.loggedIn &&
-    this.$store.state.loginState.user.permission < 2" to="/dashboard" style="float:right;">
-    <button @click="deleteBanner">DELETE</button>
+  <div id="banner">
+    <router-link :to="link_to">
+      <img :src="img_link"/>
+    </router-link>
+    <div v-if="this.$store.state.loginState.loggedIn && this.$store.state.loginState.user.permission < 2" to="/dashboard" style="position: absolute; top:1%; right:1%; z-index:1">
+      <button @click.stop="deleteBanner">DELETE</button>
+    </div>
   </div>
-
-  <router-link :to="link_to" style="margin: 0">
-    <img :src="img_link"/>
-    <br>
-  </router-link>
-  <br>
-</div>
 </template>
 
 <script>
@@ -43,10 +39,19 @@ export default {
 <style scoped>
 div {
   width: auto;
-  height: 100px;
-  border-color: darkslategrey;
-  border-radius: 8cm;
-  display: block;
+  overflow: auto;
+  /* border-color: darkslategrey; */
+  /* border-radius: 8cm; */
+  /* display: inline-block; */
+  margin: auto;
+  float: left;
+}
+
+#banner{
+  display: inline-block;
+  float: left;
+  margin: 7px;
+  position: relative;
 }
 
 button{

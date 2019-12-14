@@ -41,7 +41,7 @@ export default {
       hideDetails: true,
       trackNum: "",
       warnUser: false,
-      //staffObj: {},
+      staffObj: {},
       changingOrder: false
     };
   },
@@ -58,7 +58,7 @@ export default {
       } else if(status == 1) {
         return "Packaged!"
       } else if(status == 0) {
-        return "Shipped!"
+        return this.order.address == "in store" ? "Ready for pickup!" : "Shipped!";
       }
     },
     verifyAvailable() {
@@ -74,11 +74,6 @@ export default {
       return (this.$store.state.loginState.user.permission <= 2 &&
       this.order.staff_id == this.$store.state.loginState.user.id &&
       this.order.order_status == 1)
-    },
-    staffObj() {
-      return this.$store.state.staff.find(user => {
-          return (user.id == this.order.staff_id)
-        });
     }
   },
   methods: {
@@ -89,20 +84,23 @@ export default {
       this.hideDetails = false;
       this.changingOrder = true;
       this.$store.dispatch("updateOrder",
-      Object.assign({}, this.order, {staff_id : this.$store.state.loginState.user.id}));
-      this.changingOrder = false;
+      Object.assign({}, this.order, {staff_id : this.$store.state.loginState.user.id})).then(() => {
+        this.changingOrder = false;
+      });
     },
     finishOrder() {
       this.hideDetails = true;
       this.changingOrder = true;
       if(this.order.address == "in store") {
         this.$store.dispatch("updateOrder",
-        Object.assign({}, this.order, {order_status : 0}));
-        this.changingOrder = false;
+        Object.assign({}, this.order, {order_status : 0})).then(() => {
+          this.changingOrder = false;
+        });
       } else {
         this.$store.dispatch("updateOrder",
-        Object.assign({}, this.order, {order_status : 1}));
-        this.changingOrder = false;
+        Object.assign({}, this.order, {order_status : 1})).then(() => {
+          this.changingOrder = false;
+        });
       }
     },
     archiveOrder() {
@@ -112,60 +110,64 @@ export default {
         this.changingOrder = true;
         this.warnUser = false;
         this.$store.dispatch("updateOrder",
-        Object.assign({}, this.order, {order_status : 0, tracking_num : this.trackNum}));
-        this.changingOrder = false;
+        Object.assign({}, this.order, {order_status : 0, tracking_num : this.trackNum})).then(() => {
+          this.changingOrder = false;
+        });
       }
     }
   },
   created(){
+    this.$store.dispatch("getUser", this.order.staff_id).then((response) => {
+      this.staffObj = response;
+    })
   }
 };
 </script>
 
-    <style scoped>
-    div {
-      width: 50%;
-      margin: auto;
-    }
-    .outline {
-      border: 1px solid red;
-    }
-    .order {
-      border: solid 1px #7aa256;
-      /* border: solid 1px black; */
-      overflow: hidden;
-      padding: 5px;
-      background-color: white;
-      margin-bottom: -1px;
-    }
-    h2 {
-      display: inline;
-    }
-    button {
-      float: right;
-      margin-left: -1px;
-      padding: 5px;
-      background-color: rgba(0, 0, 0, 0);
-      border: solid 1px #7aa256;
-      border-radius: 0;
-      color: #7aa256;
-      cursor: pointer;
-    }
-    .hide {
-      display: none;
-    }
+<style scoped>
+div {
+  width: 50%;
+  margin: auto;
+}
+.outline {
+  border: 1px solid red;
+}
+.order {
+  border: solid 1px #7aa256;
+  /* border: solid 1px black; */
+  overflow: hidden;
+  padding: 5px;
+  background-color: white;
+  margin-bottom: -1px;
+}
+h2 {
+  display: inline;
+}
+button {
+  float: right;
+  margin-left: -1px;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  border: solid 1px #7aa256;
+  border-radius: 0;
+  color: #7aa256;
+  cursor: pointer;
+}
+.hide {
+  display: none;
+}
 
-    table {
-      border: solid 1px black;
-      vertical-align: middle;
-    }
+table {
+  border: solid 1px black;
+  vertical-align: middle;
+}
 
-    table tr {
-      border: solid 1px black;
-    }
+table tr {
+  border: solid 1px black;
+}
 
-    table td {
-      border: solid 1px black;
-      padding: 10px;
-    }
-    </style>
+table td {
+  border: solid 1px black;
+  padding: 10px;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="text-align: center;">
     <div class="container">
       <img width=100%; src="../assets/background.jpg">
       <div class="top-right">
@@ -7,12 +7,12 @@
       </div>
 
     </div>
-    <div>
-      <ul v-for="i in banners.length">
+    <div style="overflow: auto; margin: auto; width: 70%; text-align: center">
+      <banner v-for="i in banners.length" v-on:changed="getBanners()" v-bind:img_link="banners[banners.length-i].img_link" v-bind:link_to="banners[banners.length-i].link_to" v-bind:id="banners[banners.length-i].id"/>
+      <!-- <ul >
         <li>
-          <banner v-on:changed="getBanners()" v-bind:img_link="banners[banners.length-i].img_link" v-bind:link_to="banners[banners.length-i].link_to" v-bind:id="banners[banners.length-i].id"/>
         </li>
-      </ul>
+      </ul> -->
     </div>
   </div>
 </template>

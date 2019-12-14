@@ -159,8 +159,8 @@ export const actions = {
     return axios.delete(`/api/tag/${payload.id}`, payload);
   },
   createSpice:function({commit}, payload) {
-    return axios.post("/api/item", payload).then(() => {
-      commit("createSpice", payload);
+    return axios.post("/api/item", payload).then((response) => {
+      commit("createSpice", response);
     })
   },
   updateSpice:function({commit}, payload) {
@@ -169,8 +169,9 @@ export const actions = {
     t.tags = payload.tags;
     return axios.put(`/api/item/${payload.id}`, payload).then((response) => {
       return axios.post('/api/item_tag_1', t).then((response) => {
-        payload.tags = t;
-        commit("updateSpice", payload);
+        return axios.get("/api/item", payload).then((response) => {
+          commit("storeItems", response.data);
+        })
       })
     })
   },
@@ -214,6 +215,12 @@ export const actions = {
   getAllOrders: function({commit}) {
     return axios.get(`/api/order_all`).then(response => {
       commit("storeAllOrders", response.data);
+      return response.data;
+    })
+  },
+  getUser: function({commit}, id){
+    return axios.get(`/api/login/${id}`).then((response) => {
+      return response.data;
     })
   },
   assignShopTag: function({commit}, tag) {

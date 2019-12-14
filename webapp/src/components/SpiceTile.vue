@@ -13,10 +13,9 @@
       <div v-else style="text-align: center">
         <p style="color:black">{{"$" + getPrice().toFixed(2)}}</p>
       </div>
-        <button v-on:click.stop="edit"
-         v-if="this.$store.state.loginState.loggedIn && this.$store.state.loginState.user.permission <= 1">
-          EDIT
-        </button>
+      <button v-on:click.stop="edit" v-if="this.$store.state.loginState.loggedIn && this.$store.state.loginState.user.permission <= 1">
+        EDIT
+      </button>
     </div>
     <div :class="[hideDetails ? 'hidden' : 'background']" v-on:click="toggleDetails">
     </div>
@@ -65,7 +64,7 @@ export default {
       return (this.spice.unit_price / 100.0);
     },
     getSalePrice() {
-      
+
       return (this.spice.unit_price / 100.0) * ((100.0 - this.spice.sale) / 100.0);
     }
   },
@@ -120,7 +119,7 @@ button:hover{
 .window {
   top: 10%;
   left: 25%;
-  position:absolute;
+  position: fixed;
   width: 50%;
   margin: auto;
   padding: 0;
@@ -129,7 +128,7 @@ button:hover{
 .background {
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.75);
